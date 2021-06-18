@@ -1,0 +1,9 @@
+ <form [formGroup]="form" (submit)="onSubmit()">
+  <label for="email">Email</label>
+  <input type="email" formControlName="email" id="email">
+  <p *ngIf="controlHasErrors('email')">Wrong email</p>
+  <label for="password">Password</label>
+  <input type="password" formControlName="password" id="password">
+  <p *ngIf="controlHasErrors('password')">Wrong password</p>
+  <input type="submit" value="Login">
+</form>

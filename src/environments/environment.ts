@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+  BACKEND_API: {
+    LOGIN: 'https://hub.cobiro.com/v1/login'
+  }
 };
 
 /*
