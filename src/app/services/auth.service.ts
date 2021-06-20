@@ -1,3 +1,4 @@
+import { DoesLogin } from 'src/app/interfaces/does-login';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -7,7 +8,7 @@ import { CobiroHubLoginBodyModel, CobiroHubLoginType, UserLoginModel } from '../
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements DoesLogin {
 
   constructor(
     private http: HttpClient

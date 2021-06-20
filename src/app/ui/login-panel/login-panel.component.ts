@@ -1,7 +1,7 @@
-import { AuthService } from './../../services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserLoginModel } from 'src/app/domain/user-login.model';
+import { DoesLogin, DOES_LOGIN } from 'src/app/interfaces/does-login';
 
 @Component({
   selector: 'app-login-panel',
@@ -14,7 +14,7 @@ export class LoginPanelComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    @Inject(DOES_LOGIN) private loginService: DoesLogin
   ) { }
 
   ngOnInit(): void {
@@ -24,15 +24,15 @@ export class LoginPanelComponent implements OnInit {
     })
   }
 
-  controlHasErrors(controlName: string): boolean {
+  controlHasError(controlName: string, errorName: string): boolean {
     const control = this.form.get(controlName)
-    return control.dirty && control.touched && control.invalid;
+    return control && control.dirty && control.touched && control.invalid && control.hasError(errorName);
   }
 
   onSubmit(): void {
     if (this.form.valid) {
       const userLogin: UserLoginModel = this.form.value;
-      this.authService.login(userLogin).subscribe({
+      this.loginService.login(userLogin).subscribe({
         next: response => console.log('Yeah, right...'),
         error: error => console.error(error)
       })

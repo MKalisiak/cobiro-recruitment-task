@@ -1,9 +1,14 @@
  <form [formGroup]="form" (submit)="onSubmit()">
   <label for="email">Email</label>
   <input type="email" formControlName="email" id="email">
-  <p *ngIf="controlHasErrors('email')">Wrong email</p>
+  <p class="error-container">
+    <span *ngIf="controlHasError('email', 'required')">Email is required</span>
+    <span *ngIf="controlHasError('email', 'email')">Invalid email</span>
+  </p>
   <label for="password">Password</label>
   <input type="password" formControlName="password" id="password">
-  <p *ngIf="controlHasErrors('password')">Wrong password</p>
+  <p class="error-container">
+    <span *ngIf="controlHasError('password', 'required')">Password is required</span>
+  </p>
   <input type="submit" value="Login">
 </form>

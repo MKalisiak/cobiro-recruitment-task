@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { LoginPanelComponent } from './ui/login-panel/login-panel.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { DOES_LOGIN } from './interfaces/does-login';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide: DOES_LOGIN, useClass: AuthService}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
